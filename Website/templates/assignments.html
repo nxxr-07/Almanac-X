@@ -1,0 +1,45 @@
+{% extends "base.html"  %} {% block title  %}Assignments{% endblock %}
+
+
+
+{% block content %}
+    <div class="content">
+
+        <div class="header"><h2>Assignments</h2></div>
+        <div class="ass-page">
+        <div class="row-ass">
+        <div class="profile">
+            <h2 style="font-size: 35px; text-wrap: wrap;">NXXR's Progress</h2>
+                <p>112233</p>
+                <p>Course</p>
+                <div class="progress" style="height: 20px;">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="70"
+                        aria-valuemin="0" aria-valuemax="100" style="width:70%; color: #ffffff; background-color: #0071e3;">
+                        70%
+                    </div>
+                </div>
+
+                <a href="" id="details">Change Details</a>
+        </div>
+
+        <div class="create-assignment" >
+            <form class="assignment-form" method="POST" action="/publish-assign">
+               
+                <h5>Post New Assignment</h5>
+                <input name='title' required placeholder="Title">
+                <input name='subject' required placeholder="Subject">
+                <input name='deadline'  type="date" placeholder="Due Date">
+                <br />
+                <br />
+                <textarea name="description" required cols="49" ="3" placeholder="Enter Assignment Description..."></textarea>
+                <button type="submit" id="publish" class="btn btn-light">Publish</button>
+                
+            </form>
+
+        </div>
+        </div>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}

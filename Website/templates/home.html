@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="content">
+    <div class="row">
+        <div class="left">
+            <div class="card">
+                <div>
+                    <h2>{{ user.name }}</h2>
+                    <p>{{ user.roll }}</p>
+                    <p>{{ user.course }}</p>
+                    <div class="progress" style="height: 30px; margin-top: 20px;">
+                        
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%; color: white;">
+                        75%
+                        </div>
+                    </div>
+                    <a id="pendingLink" href="https://www.google.com">Click to See Pending Work></a>
+                </div>
+                <div>
+                    <img src="{{ url_for('static', filename='arshnoor.jpg') }}" alt="profile" 
+                    style="height: 55%; border-radius: 10px; margin-left: 55%;">
+                    
+                </div>
+            </div>
+
+            
+            <div class="tasks">
+                <h3><span style="font-size: 32px;">WorkSpace</span></h3>
+                <div style="height: 80%;">
+                    <div class="workspace-col todo">
+                        <h4>To-Do</h4>
+                        <ul class="list-group list-group-flush" id="notes">
+                        {% if user.notes %}
+                            {% for note in user.notes %}
+                            <li class="list-group-item">
+                                <button type="button" class="close" onClick="deleteNote({{ note.id}})">
+                                    <span aria-hidden="true" style="color: var(--green);">&#x2713;</span>
+                                </button>
+                                {{note.data}}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        {% else %}
+                            <h6 style="margin-left: 10px; ">Nothing to Display</h6>
+                        {% endif %} 
+                        <br>
+                        <div class="todo-form">
+                            <form method="POST" >
+                                <lable>Add To-Do</label> <br> 
+                                <input type="text" name="note-todo" id="note-todo" placeholder="Enter To-Do here..." style="width: 80%;">
+                                <button type="submit" class="btn btn-primary" style="border-radius: 10px;"> &plus;</button>
+                            </form>
+                        </div>
+
+                    </div>
+                    <div class="workspace-col">
+                        <h4>Scratch Pad</h4>
+                        <iframe frameBorder="0" width="400" height="75%" style="scrollbar-width: none;" 
+                            src="/canvas">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="right">
+            <div class="notice">
+                <h3>
+                    <span style="font-size: 32px; color:#bf4800;">Latest Updates</span> 
+                    <button type="button" onclick="refresh_notice()" class="btn " style="border-radius: 10px; background-color: #bf4800;"><i style="font-size:24px" class="fa">&#xf021;</i></button>
+                </h3>
+                {% for i in updates %}
+                <ul>
+                    <li><h6>{{ i['title'] }}</h6> ~ {{ i['date'] }}</li>
+                </ul>    
+                {% endfor %}
+
+            </div>
+
+
+            <div class="schedule">
+                <h3><span style="font-size: 32px;">Schedule</span></h3>
+                
+                <div class="classes">
+                    <table>
+                        <th>Today's <span style="color: var(--orange);">{{ date }}</span> </th>
+                        <tr >
+                            <td style="font-weight: 600;">Time</td>
+                            <td style="font-weight: 600;">Class</td>
+                            <td style="font-weight: 600;">Instructor</td>
+                        </tr>
+                    
+                        {% for class in class_list %}
+                        <tr>
+                            <td>{{ class['time'].strftime('%H:%M') }}</td>
+                            <td>{{ class['class_name'] }}</td>
+                            <td>{{ class['instructor'] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                    
+                
+            </div>
+        </div>
+    </div>
+
+
+            
+    </div>
+    
+    <!-- Right  -->
+   
+
+{% endblock %}
+
+

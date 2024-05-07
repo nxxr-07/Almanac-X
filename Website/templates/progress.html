@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>ProgressChart</title>
+    
+</head>
+<body>
+    <canvas id="progressChart" ></canvas>
+    <script>
+        // Get the user progress from Flask
+        var userProgress = 75;
+        
+        // Create the doughnut chart
+        var ctx = document.getElementById('progressChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Progress', 'Remaining'],
+                datasets: [{
+                    data: [userProgress, 100 - userProgress],
+                    backgroundColor: [
+
+                        '#0071e3', // Progress color
+                        '#bf4800' // Remaining color
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                // Add options here if needed
+            }
+        });
+    </script>
+</body>
+</html>

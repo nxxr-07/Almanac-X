@@ -1,0 +1,24 @@
+{% extends "base.html"  %} {% block title  %}Notes{% endblock %}
+
+
+
+{% block content %}
+    <div class="content">
+        <div class="header"><h2>Library</h2></div>
+        <ul>
+            {% for i in range(5) %}
+            
+                <li style="color: var(--orange);">
+                    <div class="files">
+                        <a href="https://www.google.com">
+                        <img src="{{ url_for('static',filename='download.png') }}"  alt="Download" style="width: 18px;">
+                        </a>
+                    </div>
+                </li>
+            
+            {% endfor %}
+        </ul>
+    </div>
+
+    
+{% endblock %}
